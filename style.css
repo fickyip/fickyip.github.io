@@ -9,11 +9,12 @@ body {
     margin: 0;
     width: 100vw;
     max-width:100%;
+    height:fit-content;
 }
 
 
 .brief {
-    margin: 0 0 0 12vw;
+    margin: 0 12vw 0 12vw;
     padding: 0 3vw;
     max-width:100%;
     overflow: hidden;
@@ -39,14 +40,13 @@ body {
     gap: 250px;
 }
 .container {
-    padding: 0 0 17% 15vw;
+    padding: 0 0  150px 15vw;
     max-width:100%;
     display: flex;
     flex-direction: row;
     align-items: flex-end;
     gap: 5px;
     position: relative;
-
     white-space: nowrap;
 }
 .block {
