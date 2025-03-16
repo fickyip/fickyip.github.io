@@ -23,7 +23,7 @@ body {
 }
 
 #map{
-    padding: 0 15% 0 0;
+    padding: 5% 15% 0 0;
     max-width:100%;
     flex-direction: column;
     overflow-x: scroll;
