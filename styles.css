@@ -12,6 +12,8 @@
     --space-page: 34px;
     --radius-card: 14px;
     --transition-fast: 0.25s ease;
+    --transition-hero: 1.5s ease-in-out;
+    --transition-menu: 0.6s ease-in-out;
 }
 
 * {
@@ -61,14 +63,14 @@ header {
     font-weight: 500;
     line-height: 1.25;
     letter-spacing: -1.2px;
-    transform:translateY(-5px);
+    transform: translateY(-5px);
 }
 
 .nav {
     max-height: 0;
     overflow: hidden;
     background: var(--color-nav-bg);
-    transition: max-height 0.6s ease-in-out;
+    transition: max-height var(--transition-menu);
 }
 
 .nav.active {
@@ -101,7 +103,7 @@ header {
     font-weight: 700;
 }
 
-#menuIcon {
+.menuIcon {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -114,7 +116,7 @@ header {
     align-items: center;
 }
 
-span.bar {
+.menuIcon .bar {
     display: block;
     width: 100%;
     height: 3px;
@@ -139,14 +141,29 @@ span.bar {
     display: flex;
     align-items: center;
     justify-content: center;
-    align-self: stretch;
     flex-direction: column;
     height: 90vh;
     padding: 120px 64px;
+    background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    position: relative;
+    transition: opacity var(--transition-hero);
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background-size: cover;
-    transition: background-image 1.5s ease-in-out;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 1.5s ease-in-out;
+    z-index: 1;
 }
 
 .showcase {
@@ -154,7 +171,6 @@ span.bar {
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 20px;
     padding: var(--space-page);
-    overflow: hidden;
 }
 
 .project-cards {
@@ -300,6 +316,7 @@ footer {
     flex-direction: column;
     gap: 20px;
     align-items: center;
+    width: 100%;
 }
 
 .form-group {
@@ -361,6 +378,15 @@ footer {
     transform: none;
 }
 
+.char-counter {
+    text-align: right;
+    font-size: 12px;
+}
+
+.char-counter.full {
+    color: #e01818;
+}
+
 #formStatus {
     margin-top: 16px;
     min-height: 20px;
@@ -376,14 +402,14 @@ footer {
 }
 
 /* Tablet (1279px and down) */
-@media screen and (max-width: 1279px) {
+@media (max-width: 1279px) {
     .about-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
 
 /* Mobile (799px and down) */
-@media screen and (max-width: 799px) {
+@media (max-width: 799px) {
     .about {
         padding: 52px 24px 90px;
     }

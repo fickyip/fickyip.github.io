@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
     <!-- Light mode favicon -->
-    <link rel="icon" href="img/favicon-light.svg" type="image/x-icon" media="(prefers-color-scheme: light)">
+    <link rel="icon" href="img/favicon/favicon-light.svg" type="image/x-icon" media="(prefers-color-scheme: light)">
     <!-- Dark mode favicon -->
-    <link rel="icon" href="img/favicon-dark.svg" type="image/x-icon" media="(prefers-color-scheme: dark)">
+    <link rel="icon" href="img/favicon/favicon-dark.svg" type="image/x-icon" media="(prefers-color-scheme: dark)">
     <title>Contact | Fredrick Yip</title>
 </head>
 <body>
@@ -42,6 +42,11 @@
             <h1>Get In Touch</h1>
             <p>Have a project in mind? Let's collaborate and create something amazing together.</p>
             <form class="contact-form" id="contactForm" action="https://formsubmit.co/d306ac8da296abf51f3a998ae7e3edec" method="POST">
+                <!--Settings-->
+                <input type="hidden" name="_blacklist" value="nigger, casino, viagra, cryptocurrency">
+
+
+                <!--Contact Form-->
                 <div class="form-group">
                     <label for="name">Name</label>
                     <input type="text" id="name" name="name" required>
@@ -56,7 +61,7 @@
                 </div>
                 <div class="form-group">
                     <label for="message">Message</label>
-                    <textarea id="message" name="message" required></textarea>
+                    <textarea id="message" name="message" maxlength="500" required ></textarea>
                 </div>
                 <button type="submit" class="submit-btn">Send Message</button>
             </form>
