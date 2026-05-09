@@ -4,7 +4,7 @@
 :root {
     --color-text: #1d1d1d;
     --color-muted: #666666;
-    --color-nav-bg: rgba(29, 29, 29, 0.95);
+    --color-nav-bg: rgba(29, 29, 29, 0.75);
     --color-white: #ffffff;
     --color-border: #e8e8e8;
     --color-card-bg: #fafafa;
@@ -61,6 +61,7 @@ header {
     font-weight: 500;
     line-height: 1.25;
     letter-spacing: -1.2px;
+    transform:translateY(-5px);
 }
 
 .nav {
