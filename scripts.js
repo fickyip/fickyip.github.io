@@ -33,24 +33,48 @@ if (hero) {
     changeBackground();
 }
 
-//Send Mail Button
-function sendEmail() {
-  const name = document.getElementById('name').value;
-  const email = document.getElementById('email').value;
-  const subject = document.getElementById('subject').value;
-  const message = document.getElementById('message').value;
-
-  // Constructing the mailto link
-  const mailtoLink = `mailto:cheeseburger@connect.polyu.hk?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent("From: " + name + " (" + email + ")\n\n" + message)}`;
-  
-  // Opening the default mail app
-  window.location.href = mailtoLink;
-}
-
 const contactForm = document.getElementById('contactForm');
 if (contactForm) {
-    contactForm.addEventListener('submit', (event) => {
-        event.preventDefault();
-        sendEmail();
-    });
+  const statusElement = document.getElementById('formStatus');
+  const submitButton = contactForm.querySelector('.submit-btn');
+
+  contactForm.addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    if (statusElement) {
+      statusElement.textContent = 'Sending message...';
+    }
+    if (submitButton) {
+      submitButton.disabled = true;
+    }
+
+    const formData = new FormData(contactForm);
+
+    try {
+      const response = await fetch('https://formsubmit.co/ajax/haoran.yip@connect.polyu.hk', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json'
+        },
+        body: formData
+      });
+
+      if (!response.ok) {
+        throw new Error('Request failed');
+      }
+
+      contactForm.reset();
+      if (statusElement) {
+        statusElement.textContent = 'Thank you! Your message has been sent.';
+      }
+    } catch (error) {
+      if (statusElement) {
+        statusElement.textContent = 'Could not send your message. Please try again later.';
+      }
+    } finally {
+      if (submitButton) {
+        submitButton.disabled = false;
+      }
+    }
+  });
 }

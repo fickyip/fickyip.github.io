@@ -354,6 +354,19 @@ footer {
     transform: scale(1.05);
 }
 
+.submit-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+}
+
+#formStatus {
+    margin-top: 16px;
+    min-height: 20px;
+    color: var(--color-muted);
+    font-size: 14px;
+}
+
 /* Desktop (1280px and up) */
 @media (min-width: 1280px) {
     .showcase {
