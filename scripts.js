@@ -51,7 +51,7 @@ if (contactForm) {
     const formData = new FormData(contactForm);
 
     try {
-      const response = await fetch('https://formsubmit.co/ajax/haoran.yip@connect.polyu.hk', {
+      const response = await fetch('https://formsubmit.co/ajax/d306ac8da296abf51f3a998ae7e3edec', {
         method: 'POST',
         headers: {
           Accept: 'application/json'
