@@ -9,9 +9,6 @@
     --color-border: #e8e8e8;
     --color-card-bg: #fafafa;
     --color-pill-border: #dbdbdb;
-    --color-wave-1: #24ff6e;
-    --color-wave-2: #19d154;
-    --color-wave-3: #12a840;
     --space-page: 34px;
     --radius-card: 14px;
     --transition-fast: 0.25s ease;
@@ -180,57 +177,6 @@ span.bar {
     z-index: 2;
     transform: scale(1.08);
     filter: grayscale(0%);
-}
-
-.wave-banner {
-    position: relative;
-    height: 240px;
-    background: #000000;
-    overflow: hidden;
-}
-
-.wave-line {
-    position: absolute;
-    left: -10%;
-    width: 120%;
-    height: 90px;
-    border-radius: 50%;
-    opacity: 0.8;
-    white-space: nowrap;
-    filter: drop-shadow(0 0 8px rgba(36, 255, 110, 0.7));
-    background-repeat: repeat-x;
-    background-size: 220px 100%;
-    animation: wave-flow 6s linear infinite;
-}
-
-.wave-line-one {
-    top: 38px;
-    background-image: radial-gradient(circle at 50% 140%, transparent 48px, var(--color-wave-1) 49px, transparent 51px);
-}
-
-.wave-line-two {
-    top: 92px;
-    opacity: 0.55;
-    animation-direction: reverse;
-    animation-duration: 8s;
-    background-image: radial-gradient(circle at 50% -40%, transparent 48px, var(--color-wave-2) 49px, transparent 51px);
-}
-
-.wave-line-three {
-    top: 146px;
-    opacity: 0.35;
-    animation-duration: 10s;
-    background-image: radial-gradient(circle at 50% 140%, transparent 48px, var(--color-wave-3) 49px, transparent 51px);
-}
-
-@keyframes wave-flow {
-    from {
-        transform: translateX(0);
-    }
-
-    to {
-        transform: translateX(-220px);
-    }
 }
 
 .about {
@@ -424,26 +370,6 @@ footer {
 
 /* Mobile (799px and down) */
 @media screen and (max-width: 799px) {
-    .wave-banner {
-        height: 170px;
-    }
-
-    .wave-line {
-        background-size: 170px 100%;
-    }
-
-    .wave-line-one {
-        top: 22px;
-    }
-
-    .wave-line-two {
-        top: 62px;
-    }
-
-    .wave-line-three {
-        top: 102px;
-    }
-
     .about {
         padding: 52px 24px 90px;
     }
