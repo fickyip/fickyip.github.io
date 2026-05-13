@@ -204,7 +204,7 @@ header {
 .about-content {
     display: flex;
     padding: 49px 34px;
-    align-items: center;
+    align-items: flex-start;
     gap: 20px;
     align-self: stretch;
     
@@ -220,14 +220,14 @@ header {
 }
 
 .about-content img{
-    width: 50vw;
+    width: 30vw;
     aspect-ratio: 1/1;
     
 }
 
 .about-intro {
     max-width: 62ch;
-    height: 50vw;
+    height: 100vw/6;
     color: #000000;
     font-size: 18px;
     line-height: 1.6;
