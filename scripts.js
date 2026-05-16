@@ -59,6 +59,26 @@ function changeBackground() {
 
 initHeroSlideshow();
 
+// Character counter for message textarea
+const messageTextarea = document.getElementById('message');
+
+if (messageTextarea) {
+    const maxChars = parseInt(messageTextarea.getAttribute('maxlength'), 10);
+    const charCounter = document.createElement('div');
+    charCounter.className = 'char-counter';
+    charCounter.setAttribute('aria-live', 'polite');
+    messageTextarea.parentNode.insertBefore(charCounter, messageTextarea.nextSibling);
+
+    function updateCharCount() {
+        const remaining = maxChars - messageTextarea.value.length;
+        charCounter.textContent = `${remaining}/${maxChars}`;
+        charCounter.classList.toggle('full', remaining === 0);
+    }
+
+    messageTextarea.addEventListener('input', updateCharCount);
+    updateCharCount();
+}
+
 // Contact form handling
 const contactForm = document.getElementById('contactForm');
 
@@ -70,7 +90,9 @@ if (contactForm) {
         event.preventDefault();
 
         updateStatus('Sending message...', statusElement);
+        updateCharCount();
         disableSubmit(submitButton, true);
+        
 
         const formData = new FormData(contactForm);
 
@@ -99,24 +121,4 @@ function updateStatus(message, element) {
 
 function disableSubmit(button, disabled) {
     if (button) button.disabled = disabled;
-}
-
-// Character counter for message textarea
-const messageTextarea = document.getElementById('message');
-
-if (messageTextarea) {
-    const maxChars = parseInt(messageTextarea.getAttribute('maxlength'), 10);
-    const charCounter = document.createElement('div');
-    charCounter.className = 'char-counter';
-    charCounter.setAttribute('aria-live', 'polite');
-    messageTextarea.parentNode.insertBefore(charCounter, messageTextarea.nextSibling);
-
-    function updateCharCount() {
-        const remaining = maxChars - messageTextarea.value.length;
-        charCounter.textContent = `${remaining}/${maxChars}`;
-        charCounter.classList.toggle('full', remaining === 0);
-    }
-
-    messageTextarea.addEventListener('input', updateCharCount);
-    updateCharCount();
 }
