@@ -9,28 +9,36 @@
     --color-nav-bg: rgba(29, 29, 29, 0.75);
     --color-border: #e8e8e8;
     --color-bg-subtle: #fafafa;
-    
+
     /* Spacing */
     --space-page: 34px;
     --space-lg: 60px;
     --space-md: 32px;
     --space-sm: 20px;
     --space-xs: 12px;
-    
+
     /* Typography */
     --font-display: 'DIN', sans-serif;
     --font-body: 'DM Sans', sans-serif;
-    --font-size-body: 18px;
-    --font-size-sm: 14px;
-    --font-size-xs: 11px;
-    
+    --font-size: 16px;
+    --line-height: 1.3;
+    --type-scale: 1.2;
+    --font-size-h1: calc(var(--font-size) * pow(var(--type-scale), 6));
+    --font-size-h2: calc(var(--font-size) * pow(var(--type-scale), 5));
+    --font-size-h3: calc(var(--font-size) * pow(var(--type-scale), 4));
+    --font-size-h4: calc(var(--font-size) * pow(var(--type-scale), 3));
+    --font-size-h5: calc(var(--font-size) * pow(var(--type-scale), 2));
+    --font-size-h6: calc(var(--font-size) * pow(var(--type-scale), 1));
+    --font-size-sm: calc(var(--font-size) / pow(var(--type-scale), 1));
+    --font-size-xs: calc(var(--font-size) / pow(var(--type-scale), 2));
+
     /* Sizing */
     --radius-sm: 4px;
     --radius-md: 8px;
     --radius-lg: 12px;
     --size-icon: 50px;
     --size-icon-sm: 45px;
-    
+
     /* Transitions */
     --transition-fast: 0.25s ease;
     --transition-smooth: 0.3s ease;
@@ -58,17 +66,23 @@ body {
     color: var(--color-text);
     font-family: var(--font-body);
     font-optical-sizing: auto;
-    line-height: 1.3;
+    line-height: var(--line-height);
     overflow-x: hidden;
-    padding-top: 85px;
+    padding-top: 92px;
 }
 
+section {
+    position: sticky;
+}
+
+/* Header */
 header {
     position: fixed;
     top: 0;
     width: 100%;
     z-index: 1000;
     backdrop-filter: blur(5px);
+    
 }
 
 .header-content {
@@ -77,16 +91,18 @@ header {
     justify-content: space-between;
     padding: 20px var(--space-page);
     background: var(--color-white);
+    border-bottom: 1px solid var(--color-border);
 }
 
 .logo {
     font-family: var(--font-display);
-    font-size: 36px;
+    font-size: 2.5rem;
     font-weight: 500;
-    line-height: 1.25;
     letter-spacing: -1.2px;
     transform: translateY(-5px);
 }
+
+/* Navigation Bar */
 
 .nav {
     max-height: 0;
@@ -114,7 +130,7 @@ header {
 .navLink {
     z-index: 100;
     color: var(--color-white);
-    font-size: 25px;
+    font-size: var(--font-size-h5);
     font-weight: 200;
     letter-spacing: -1px;
     transition: font-weight var(--transition-smooth);
@@ -122,7 +138,7 @@ header {
 
 .navLink:hover,
 .navLink.active {
-    font-weight: 700;
+    font-weight: 1000;
 }
 
 .menuIcon {
@@ -159,13 +175,14 @@ header {
     transform: translateY(-16px) rotate(45deg);
 }
 
+/* Landing Page */
+
 .hero {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     height: 90vh;
-    filter: saturate(90%);
     padding: 120px 64px;
     background-size: cover;
     background-position: center;
@@ -174,9 +191,25 @@ header {
     transition: opacity var(--transition-hero);
 }
 
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 1.5s ease-in-out;
+    z-index: 1;
+}
+
+/* Project Showcase */
 .showcase {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-columns: repeat(3, minmax(250px, 1fr));
     gap: var(--space-sm);
     padding: var(--space-page);
 }
@@ -204,6 +237,122 @@ header {
     filter: grayscale(0%);
 }
 
+/* Projects Page */
+.back-nav {
+    display: inline-block;
+    color: var(--color-muted);
+    font-size: var(--font-size-sm);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all var(--transition-smooth);
+    text-box-edge: cap alphabetic;
+    text-box-trim: trim-both;
+    
+}
+
+.back-nav:hover {
+    color: var(--color-text);
+}
+
+.project-nav {
+    position: sticky;
+    top: 92px;
+    z-index: 200;
+    width: 40%;
+    height: 5vh;
+    padding: 0 var(--space-page);
+    background-color: var(--color-white);
+    display: flex;
+    align-items: center;
+}
+
+.project {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: var(--color-white);
+}
+
+.project-container {
+    margin-left: 40%;
+    margin-top: 0;
+    display: block;
+    flex: none;
+    width: 60%;
+    height: auto;
+}
+
+.project-grid {
+    display: block;
+}
+
+.project-intro {
+    display: flex;
+    flex-direction: column;
+    padding: var(--space-xs) var(--space-page);
+    gap: var(--space-sm);
+    position: fixed;
+    left: 0;
+    width: 40%;
+    height: calc(100vh - 92px - 44px);
+    overflow-y: auto;
+    z-index: 50;
+}
+
+.project-title {
+    display: flex;
+    flex-direction: column;
+    font-family: var(--font-display);
+    gap: var(--space-xs);
+}
+
+.project-title h1 {
+    font-weight: 400;
+    font-size: var(--font-size-h3);
+    line-height: 1.1;
+    text-box-edge: cap alphabetic;
+    text-box-trim: trim-start;
+}
+
+.project-title h2 {
+    font-weight: 400;
+    font-size: var(--font-size-h5);
+    line-height: 1.1;
+}
+
+.project-details-grid {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+}
+
+.project-detail {
+    font-size: var(--font-size-sm);
+    color: var(--color-muted);
+}
+
+.project-preview {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    align-items: center;
+    padding: var(--space-xs) var(--space-page);
+    overflow-y: auto;
+    height: auto;
+}
+
+.project-img {
+    width: 100%;
+}
+
+.project-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* About Page */
+
 .about {
     min-height: 100vh;
     padding: var(--space-lg) var(--space-page);
@@ -216,7 +365,7 @@ header {
 
 .about-grid {
     display: grid;
-    grid-template-columns: 2fr 3fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     gap: var(--space-md);
     align-items: start;
 }
@@ -224,11 +373,12 @@ header {
 .about-hero {
     display: flex;
     justify-content: center;
-    align-items: flex-start;
+    align-items: stretch;
+    flex: 1;
 }
 
 .profile-image {
-    width: 100%;
+    height: 100%;
     max-width: 600px;
     aspect-ratio: 1 / 1;
     overflow: hidden;
@@ -244,15 +394,14 @@ header {
 .about-intro {
     display: flex;
     flex-direction: column;
-    gap: var(--space-md);
+    gap: var(--space-sm);
 }
 
 .about-intro h1 {
     font-family: var(--font-display);
-    font-size: clamp(32px, 4vw, 48px);
+    font-size: var(--font-size-h1);
     font-weight: 500;
-    letter-spacing: -2px;
-    line-height: 1.2;
+    letter-spacing: -0.3rem;
     color: var(--color-text);
     text-box-edge: cap alphabetic;
     text-box-trim: trim-start;
@@ -260,9 +409,10 @@ header {
 }
 
 .intro-body {
-    font-size: var(--font-size-body);
-    line-height: 1.7;
-    color: var(--color-muted);
+    font-size: var(--font-size);
+    line-height: var(--line-height);
+    color: var(--color-text);
+    widows: 3;
 }
 
 .profile-section {
@@ -313,11 +463,7 @@ header {
     transition: filter var(--transition-smooth);
 }
 
-footer {
-    padding: 2vh var(--space-page);
-    font-size: var(--font-size-xs);
-    text-align: left;
-}
+/* Contact Page */
 
 .contact-container {
     display: flex;
@@ -336,7 +482,7 @@ footer {
 .contact-content h1 {
     margin-bottom: var(--space-sm);
     font-family: var(--font-display);
-    font-size: 48px;
+    font-size: var(--font-size-h1);
     font-weight: 500;
     letter-spacing: -1.5px;
 }
@@ -344,8 +490,8 @@ footer {
 .contact-content p {
     margin-bottom: var(--space-lg);
     color: var(--color-muted);
-    font-size: var(--font-size-body);
-    line-height: 1.6;
+    font-size: var(--font-size);
+    line-height: var(--line-height);
 }
 
 .contact-form {
@@ -392,7 +538,7 @@ footer {
 
 .char-counter {
     text-align: right;
-    font-size: 11px;
+    font-size: var(--font-size-sm);
 }
 
 .char-counter.full {
@@ -431,16 +577,96 @@ footer {
     font-size: var(--font-size-sm);
 }
 
-/* Tablet (1279px and down) */
-@media (max-width: 1279px) {
+/* Footer */
+footer {
+    padding: 2vh var(--space-page);
+    font-size: var(--font-size-xs);
+    text-align: left;
+}
+
+
+/* Tablet (800px - 1024px) */
+@media (min-width: 800px) and (max-width: 1024px) {
+    .project-nav {
+        width: 100%;
+    }
+
+    .project-intro {
+        width: 50%;
+        top: calc(85px + 44px);
+        height: calc(100vh - 85px - 44px);
+    }
+
+    .project-container {
+        margin-left: 50%;
+        width: 50%;
+    }
+
+    .project-title h1 {
+        font-size: var(--font-size-h4);
+    }
+
+    .project-title h2 {
+        font-size: var(--font-size-h6);
+    }
+
+    .showcase {
+        grid-template-columns: repeat(2, minmax(250px, 1fr));
+    }
+
     .about-grid {
-        grid-template-columns: 1fr;
-        gap: var(--space-lg);
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-md);
+    }
+
+    .about-intro {
+        aspect-ratio: 1 / 1;
+        gap: 0px;
+        justify-content: space-between;
     }
 }
 
 /* Mobile (799px and down) */
 @media (max-width: 799px) {
+    .project-nav {
+        width: 100%;
+    }
+    .project-intro {
+        position: relative;
+        width: 100%;
+        height: auto;
+        top: auto;
+        left: auto;
+        padding: var(--space-lg) var(--space-page);
+        overflow-y: visible;
+    }
+
+    .project-container {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .project-title h1 {
+        font-size: var(--font-size-h4);
+    }
+
+    .project-title h2 {
+        font-size: var(--font-size-h6);
+    }
+
+    .project-preview {
+        padding-left: var(--space-page);
+        padding-right: var(--space-page);
+    }
+
+    .intro-body {
+        font-size: var(--font-size-sm);
+    }
+
+    .showcase {
+        grid-template-columns: repeat(1, minmax(250px, 1fr));
+    }
+
     .about {
         padding: 40px var(--space-page);
         min-height: auto;
@@ -452,19 +678,11 @@ footer {
 
     .about-grid {
         grid-template-columns: 1fr;
-        gap: var(--space-md);
+        gap: var(--space-lg);
     }
 
     .profile-image {
         max-width: 100%;
-    }
-
-    .about-intro h1 {
-        font-size: 32px;
-    }
-
-    .intro-body {
-        font-size: 16px;
     }
 
     .profile-section {
@@ -488,13 +706,5 @@ footer {
     .contact-container {
         min-height: auto;
         padding: 52px var(--space-page) 90px;
-    }
-
-    .contact-content h1 {
-        font-size: 32px;
-    }
-
-    .contact-content p {
-        font-size: 16px;
     }
 }

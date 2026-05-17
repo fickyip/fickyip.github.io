@@ -11,7 +11,7 @@ if (menuIcon && navMenu) {
 
 // Hero image slideshow
 const images = [
-    'img/projects/evviva/0002.png',
+    'img/projects/evviva/jar-overview.jpg',
     'img/projects/ngo2deng6/AD-BuisinessCards.png',
     'img/projects/polyu-wayfinding/0001.png'
 ];
@@ -19,7 +19,7 @@ const images = [
 let currentIndex = 0;
 const hero = document.querySelector('.hero');
 const TRANSITION_DURATION = 1500;
-const SLIDESHOW_INTERVAL = 4000;
+const SLIDESHOW_INTERVAL = 5000;
 let heroOverlay;
 
 function initHeroSlideshow() {
@@ -92,7 +92,7 @@ if (contactForm) {
         updateStatus('Sending message...', statusElement);
         updateCharCount();
         disableSubmit(submitButton, true);
-        
+
 
         const formData = new FormData(contactForm);
 
