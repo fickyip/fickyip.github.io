@@ -11,9 +11,9 @@ if (menuIcon && navMenu) {
 
 // Hero image slideshow
 const images = [
-    'img/projects/evviva/jar-overview.jpg',
-    'img/projects/ngo2deng6/AD-BuisinessCards.png',
-    'img/projects/polyu-wayfinding/0001.png'
+    'img/projects/evviva/jar-overview.webp',
+    'img/projects/ngo2deng6/AD-BuisinessCards.webp',
+    'img/projects/polyu-wayfinding/0001.webp'
 ];
 
 let currentIndex = 0;
