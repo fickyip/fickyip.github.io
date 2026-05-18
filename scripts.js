@@ -3,9 +3,25 @@ const menuIcon = document.getElementById('menuIcon');
 const navMenu = document.getElementById('nav');
 
 if (menuIcon && navMenu) {
-    menuIcon.addEventListener('click', () => {
+    const closeNav = () => {
+        menuIcon.classList.remove('active');
+        navMenu.classList.remove('active');
+    };
+
+    menuIcon.addEventListener('click', (event) => {
+        event.stopPropagation();
         menuIcon.classList.toggle('active');
         navMenu.classList.toggle('active');
+    });
+
+    navMenu.addEventListener('click', (event) => {
+        event.stopPropagation();
+    });
+
+    document.addEventListener('click', (event) => {
+        if (!navMenu.contains(event.target) && event.target !== menuIcon) {
+            closeNav();
+        }
     });
 }
 
