@@ -280,7 +280,6 @@ header {
 .project {
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
     background-color: var(--color-white);
 }
 
@@ -591,6 +590,10 @@ header {
 /* Footer */
 footer {
     padding: 2vh var(--space-page);
+}
+
+.copyrights {
+    width: 100%;
     font-size: var(--font-size-xs);
     text-align: left;
 }
@@ -605,7 +608,6 @@ footer {
     .project-intro {
         width: 50%;
         top: calc(var(--space-header) + 5vh);
-        height: calc(100vh - var(--space-header) - 5vh);
     }
 
     .project-container {
