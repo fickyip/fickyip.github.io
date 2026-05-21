@@ -103,7 +103,7 @@ if (contactForm) {
     const submitButton = contactForm.querySelector('.submit-btn');
 
     contactForm.addEventListener('submit', async (event) => {
-        event.preventDefault();
+        event.preventDefault()
 
         updateStatus('Sending message...', statusElement);
         updateCharCount();
@@ -111,18 +111,25 @@ if (contactForm) {
 
 
         const formData = new FormData(contactForm);
+        formData.append("access_key", "b5cf81d6-54b7-4fc4-96a2-60a83494bf74")
 
         try {
-            const response = await fetch('https://formsubmit.co/ajax/d306ac8da296abf51f3a998ae7e3edec', {
+            const response = await fetch("https://api.web3forms.com/submit", {
                 method: 'POST',
-                headers: { Accept: 'application/json' },
                 body: formData
             });
+            const data = await response.json();
 
             if (!response.ok) throw new Error('Request failed');
 
             contactForm.reset();
-            updateStatus('Thank you! Your message has been sent.', statusElement);
+            if (response.ok) {
+                updateStatus('Thank you! Your message has been sent.', statusElement);
+                contactForm.reset();
+            } else {
+                updateStatus("Error: " + data.message);
+            }
+            
         } catch (error) {
             updateStatus('Could not send your message. Please try again later.', statusElement);
         } finally {
