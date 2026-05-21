@@ -98,6 +98,14 @@ if (messageTextarea) {
 // Contact form handling
 const contactForm = document.getElementById('contactForm');
 
+function updateStatus(message, element) {
+    if (element) element.textContent = message;
+}
+
+function disableSubmit(button, disabled) {
+    if (button) button.disabled = disabled;
+}
+
 if (contactForm) {
     const statusElement = document.getElementById('formStatus');
     const submitButton = contactForm.querySelector('.submit-btn');
@@ -121,27 +129,19 @@ if (contactForm) {
             const data = await response.json();
 
             if (!response.ok) throw new Error('Request failed');
-
             contactForm.reset();
+            
             if (response.ok) {
                 updateStatus('Thank you! Your message has been sent.', statusElement);
                 contactForm.reset();
             } else {
                 updateStatus("Error: " + data.message);
             }
-            
+
         } catch (error) {
             updateStatus('Could not send your message. Please try again later.', statusElement);
         } finally {
             disableSubmit(submitButton, false);
         }
     });
-}
-
-function updateStatus(message, element) {
-    if (element) element.textContent = message;
-}
-
-function disableSubmit(button, disabled) {
-    if (button) button.disabled = disabled;
 }
