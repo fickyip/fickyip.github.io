@@ -119,16 +119,18 @@ if (contactForm) {
 
 
         const formData = new FormData(contactForm);
-        formData.append("access_key", "b5cf81d6-54b7-4fc4-96a2-60a83494bf74")
 
         try {
-            const response = await fetch("https://api.web3forms.com/submit", {
+            const response = await fetch(contactForm.action || 'https://api.web3forms.com/submit', {
                 method: 'POST',
                 body: formData
             });
-            const data = await response.json();
+            const data = await response.json().catch(() => null);
 
-            if (!response.ok) throw new Error('Request failed');
+            if (!response.ok) {
+                const errorMessage = data && data.message ? data.message : `${response.status} ${response.statusText}`;
+                throw new Error(errorMessage);
+            }
             contactForm.reset();
 
             if (response.ok) {
