@@ -110,8 +110,8 @@ if (contactForm) {
     const statusElement = document.getElementById('formStatus');
     const submitButton = contactForm.querySelector('.submit-btn');
 
-    contactForm.addEventListener('submit', async (event) => {
-        event.preventDefault()
+    contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault()
 
         updateStatus('Sending message...', statusElement);
         updateCharCount();
@@ -130,7 +130,7 @@ if (contactForm) {
 
             if (!response.ok) throw new Error('Request failed');
             contactForm.reset();
-            
+
             if (response.ok) {
                 updateStatus('Thank you! Your message has been sent.', statusElement);
                 contactForm.reset();
